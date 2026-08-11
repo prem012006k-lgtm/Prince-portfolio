@@ -1,109 +1,188 @@
-```javascript
-/* =====================================================
-   SHREE MADHUVAN JEWELLERS
-   PRINCE AJAY PRAJAPAT PORTFOLIO
-   ===================================================== */
+/* =========================================
+   PRINCE AJAY PRAJAPAT
+   PORTFOLIO JAVASCRIPT
+   ========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* -----------------------------------------
+       MOBILE MENU
+       ----------------------------------------- */
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    if (menuToggle && navLinks) {
+
+        menuToggle.addEventListener("click", function () {
+            navLinks.classList.toggle("active");
+
+            if (navLinks.classList.contains("active")) {
+                menuToggle.innerHTML = "✕";
+            } else {
+                menuToggle.innerHTML = "☰";
+            }
+        });
 
 
-/* ---------- LOADING SCREEN ---------- */
+        /* Close menu after clicking a link */
 
-window.addEventListener("load", function () {
+        const links = navLinks.querySelectorAll("a");
 
-    const loader = document.querySelector(".loader");
+        links.forEach(function (link) {
 
-    setTimeout(function () {
-        loader.classList.add("hide");
-    }, 1000);
+            link.addEventListener("click", function () {
 
-});
+                navLinks.classList.remove("active");
 
+                menuToggle.innerHTML = "☰";
 
-/* ---------- MOBILE MENU ---------- */
+            });
 
-const menuToggle = document.getElementById("menuToggle");
-const navMenu = document.getElementById("navMenu");
+        });
 
-menuToggle.addEventListener("click", function () {
-
-    navMenu.classList.toggle("active");
-
-});
+    }
 
 
-/* ---------- CLOSE MOBILE MENU ---------- */
+    /* -----------------------------------------
+       CURRENT YEAR
+       ----------------------------------------- */
 
-const navLinks = document.querySelectorAll("nav a");
+    const yearElement = document.getElementById("year");
 
-navLinks.forEach(function (link) {
-
-    link.addEventListener("click", function () {
-
-        navMenu.classList.remove("active");
-
-    });
-
-});
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
 
 
-/* ---------- CURRENT YEAR ---------- */
+    /* -----------------------------------------
+       NAVBAR SHADOW ON SCROLL
+       ----------------------------------------- */
 
-const year = document.getElementById("year");
+    const navbar = document.querySelector(".navbar");
 
-year.textContent = new Date().getFullYear();
+    function updateNavbar() {
+
+        if (!navbar) {
+            return;
+        }
+
+        if (window.scrollY > 50) {
+
+            navbar.style.borderBottomColor =
+                "rgba(214, 179, 106, 0.25)";
+
+        } else {
+
+            navbar.style.borderBottomColor =
+                "rgba(214, 179, 106, 0.12)";
+
+        }
+
+    }
+
+    window.addEventListener("scroll", updateNavbar);
+
+    updateNavbar();
 
 
-/* ---------- SCROLL ANIMATION ---------- */
+    /* -----------------------------------------
+       ACTIVE NAVIGATION LINK
+       ----------------------------------------- */
 
-const animatedElements = document.querySelectorAll(
-    ".skill-card, .experience-card, .about-grid, .business-content, .education-item, .contact-card"
-);
+    const sections = document.querySelectorAll("section[id]");
+    const navigationLinks = document.querySelectorAll(".nav-links a");
+
+    function updateActiveLink() {
+
+        let currentSection = "";
+
+        sections.forEach(function (section) {
+
+            const sectionTop = section.offsetTop - 160;
+            const sectionHeight = section.offsetHeight;
+
+            if (
+                window.scrollY >= sectionTop &&
+                window.scrollY < sectionTop + sectionHeight
+            ) {
+                currentSection = section.getAttribute("id");
+            }
+
+        });
+
+        navigationLinks.forEach(function (link) {
+
+            link.style.color = "";
+
+            const target = link.getAttribute("href");
+
+            if (target === "#" + currentSection) {
+                link.style.color = "#f0d89b";
+            }
+
+        });
+
+    }
+
+    window.addEventListener("scroll", updateActiveLink);
+
+    updateActiveLink();
 
 
-const observer = new IntersectionObserver(
+    /* -----------------------------------------
+       MOUSE PARALLAX FOR HERO
+       ----------------------------------------- */
 
-    function (entries) {
+    const heroVisual = document.querySelector(".hero-visual");
 
-        entries.forEach(function (entry) {
+    if (heroVisual && window.innerWidth > 900) {
 
-            if (entry.isIntersecting) {
+        document.addEventListener("mousemove", function (event) {
 
-                entry.target.classList.add("show");
+            const x =
+                (event.clientX / window.innerWidth - 0.5) * 8;
+
+            const y =
+                (event.clientY / window.innerHeight - 0.5) * 8;
+
+            heroVisual.style.transform =
+                "translate(" + x + "px, " + y + "px)";
+
+        });
+
+    }
+
+
+    /* -----------------------------------------
+       SMOOTH ANCHOR SUPPORT
+       ----------------------------------------- */
+
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+
+        link.addEventListener("click", function (event) {
+
+            const targetId = link.getAttribute("href");
+
+            if (targetId === "#") {
+                return;
+            }
+
+            const target = document.querySelector(targetId);
+
+            if (target) {
+
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
 
             }
 
         });
 
-    },
-
-    {
-        threshold: 0.15
-    }
-
-);
-
-
-animatedElements.forEach(function (element) {
-
-    observer.observe(element);
+    });
 
 });
-
-
-/* ---------- NAVBAR BACKGROUND ---------- */
-
-window.addEventListener("scroll", function () {
-
-    const navbar = document.querySelector(".navbar");
-
-    if (window.scrollY > 50) {
-
-        navbar.style.background = "rgba(8, 8, 8, 0.97)";
-
-    } else {
-
-        navbar.style.background = "rgba(11, 11, 11, 0.85)";
-
-    }
-
-});
-```
