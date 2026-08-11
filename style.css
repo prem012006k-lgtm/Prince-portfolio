@@ -1198,28 +1198,7 @@ footer {
 }
 
 
-/* ---------- SCROLL ANIMATION ---------- */
 
-.skill-card,
-.experience-card,
-.about-grid,
-.business-content,
-.education-item,
-.contact-card {
-    opacity: 0;
-
-    transform: translateY(30px);
-
-    transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
-}
-
-.show {
-    opacity: 1;
-
-    transform: translateY(0);
-}
 
 
 /* ---------- MOBILE ---------- */
