@@ -1372,12 +1372,12 @@ footer {
 
 /* Crown */
 .initial-card.crown-logo .crown {
-    font-size: 58px;
+    font-size: 42px;
     line-height: 1;
 
     color: #f0d89b;
 
-    margin-bottom: 8px;
+    margin-bottom: 2px;
 
     text-shadow:
         0 0 10px rgba(214, 179, 106, 0.45),
@@ -1392,7 +1392,7 @@ footer {
 
     font-family: "Cormorant Garamond", Georgia, serif;
 
-    font-size: 115px;
+    font-size: 105px;
     font-weight: 500;
     line-height: 0.85;
 
