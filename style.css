@@ -1515,6 +1515,49 @@ footer {
         drop-shadow(0 0 28px rgba(240, 216, 155, 0.7));
 }
 
+/* =========================================
+   CROWN - MATCHING GOLD FINISH
+   ========================================= */
+
+.initial-card.crown-logo .crown {
+    font-size: 42px;
+
+    line-height: 1;
+
+    margin-bottom: -2px;
+
+    color: #f0d89b;
+
+    text-shadow:
+        0 1px 0 #8f6a25,
+        0 2px 0 #76531b,
+        0 0 8px rgba(240, 216, 155, 0.55),
+        0 0 18px rgba(214, 179, 106, 0.35);
+
+    filter:
+        drop-shadow(0 3px 4px rgba(0, 0, 0, 0.7));
+
+    animation: crownLuxuryGlow 3.5s ease-in-out infinite;
+}
+
+
+@keyframes crownLuxuryGlow {
+
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        filter:
+            drop-shadow(0 3px 4px rgba(0, 0, 0, 0.7))
+            drop-shadow(0 0 8px rgba(214, 179, 106, 0.3));
+    }
+
+    50% {
+        transform: translateY(-3px) scale(1.04);
+        filter:
+            drop-shadow(0 4px 5px rgba(0, 0, 0, 0.8))
+            drop-shadow(0 0 18px rgba(240, 216, 155, 0.65));
+    }
+} 
+
 /* Hover effect */
 .initial-card.crown-logo:hover {
     transform: translateY(-8px) scale(1.02);
